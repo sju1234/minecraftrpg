@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Chronicles - Dark Fantasy RPG</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 로그인 / 회원가입 화면 -->
+<div id="authScreen" class="screen active">
+  <div class="auth-bg"></div>
+  <div class="particles" id="authParticles"></div>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <span class="auth-logo-main">SHADOW CHRONICLES</span>
+      <span class="auth-logo-sub">어둠의 연대기</span>
+    </div>
+    <div class="auth-box">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="loginTab">🔑 로그인</button>
+        <button class="auth-tab" id="signupTab">✦ 회원가입</button>
+      </div>
+
+      <!-- 로그인 폼 -->
+      <div id="loginForm" class="auth-form">
+        <div class="auth-field">
+          <label>아이디</label>
+          <input type="text" id="loginUsername" placeholder="아이디를 입력하세요" maxlength="12" autocomplete="username">
+        </div>
+        <div class="auth-field">
+          <label>비밀번호</label>
+          <input type="password" id="loginPassword" placeholder="비밀번호를 입력하세요" maxlength="20" autocomplete="current-password">
+        </div>
+        <p class="auth-error" id="loginError"></p>
+        <button class="auth-submit-btn" id="loginBtn">로그인</button>
+      </div>
+
+      <!-- 회원가입 폼 -->
+      <div id="signupForm" class="auth-form hidden">
+        <div class="auth-field">
+          <label>아이디 <span class="auth-hint">영문·한글·숫자, 2~12자</span></label>
+          <input type="text" id="signupUsername" placeholder="사용할 아이디" maxlength="12" autocomplete="username">
+          <span class="auth-check-msg" id="usernameCheck"></span>
+        </div>
+        <div class="auth-field">
+          <label>비밀번호 <span class="auth-hint">4자 이상</span></label>
+          <input type="password" id="signupPassword" placeholder="비밀번호" maxlength="20" autocomplete="new-password">
+        </div>
+        <div class="auth-field">
+          <label>비밀번호 확인</label>
+          <input type="password" id="signupPasswordConfirm" placeholder="비밀번호 재입력" maxlength="20" autocomplete="new-password">
+        </div>
+        <p class="auth-error" id="signupError"></p>
+        <button class="auth-submit-btn" id="signupBtn">회원가입</button>
+      </div>
+    </div>
+    <p class="auth-footer">⚔ 모험이 당신을 기다립니다 ⚔</p>
+  </div>
+</div>
+
+<!-- 시작 화면 -->
+<div id="startScreen" class="screen">
+  <div class="title-container">
+    <div class="title-bg"></div>
+    <div class="particles" id="titleParticles"></div>
+    <h1 class="game-title">
+      <span class="title-shadow">SHADOW</span>
+      <span class="title-main">CHRONICLES</span>
+      <span class="title-sub">어둠의 연대기</span>
+    </h1>
+    <div class="menu-buttons">
+      <button class="menu-btn" id="newGameBtn">
+        <span class="btn-icon">⚔</span> 새 게임
+      </button>
+      <button class="menu-btn" id="loadGameBtn">
+        <span class="btn-icon">📜</span> 불러오기
+      </button>
+      <button class="menu-btn secondary" id="creditsBtn">
+        <span class="btn-icon">✦</span> 크레딧
+      </button>
+    </div>
+    <div class="version">v1.0 - Shadow Chronicles</div>
+  </div>
+</div>
+
+<!-- 캐릭터 생성 화면 -->
+<div id="charCreateScreen" class="screen">
+  <div class="char-create-container">
+    <h2 class="screen-title">영웅을 선택하라</h2>
+    <div class="class-selection">
+      <div class="class-card" data-class="warrior">
+        <div class="class-icon warrior-icon">⚔</div>
+        <h3>전사</h3>
+        <p>철벽 같은 방어와 강력한 근접 공격의 달인</p>
+        <div class="class-stats">
+          <div class="stat-bar"><span>HP</span><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+          <div class="stat-bar"><span>MP</span><div class="bar"><div class="fill" style="width:30%"></div></div></div>
+          <div class="stat-bar"><span>ATK</span><div class="bar"><div class="fill" style="width:75%"></div></div></div>
+          <div class="stat-bar"><span>DEF</span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
+        </div>
+        <div class="skills-preview">
+          <span class="skill-tag">강타</span>
+          <span class="skill-tag">방패막기</span>
+          <span class="skill-tag">전투의 함성</span>
+        </div>
+      </div>
+      <div class="class-card" data-class="mage">
+        <div class="class-icon mage-icon">✦</div>
+        <h3>마법사</h3>
+        <p>강력한 마법으로 적을 불태우는 마나의 지배자</p>
+        <div class="class-stats">
+          <div class="stat-bar"><span>HP</span><div class="bar"><div class="fill" style="width:40%"></div></div></div>
+          <div class="stat-bar"><span>MP</span><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+          <div class="stat-bar"><span>ATK</span><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+          <div class="stat-bar"><span>DEF</span><div class="bar"><div class="fill" style="width:25%"></div></div></div>
+        </div>
+        <div class="skills-preview">
+          <span class="skill-tag">화염구</span>
+          <span class="skill-tag">번개 화살</span>
+          <span class="skill-tag">메테오</span>
+        </div>
+      </div>
+      <div class="class-card" data-class="rogue">
+        <div class="class-icon rogue-icon">🗡</div>
+        <h3>도적</h3>
+        <p>그림자에서 나타나 치명상을 입히는 암살의 달인</p>
+        <div class="class-stats">
+          <div class="stat-bar"><span>HP</span><div class="bar"><div class="fill" style="width:60%"></div></div></div>
+          <div class="stat-bar"><span>MP</span><div class="bar"><div class="fill" style="width:50%"></div></div></div>
+          <div class="stat-bar"><span>ATK</span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
+          <div class="stat-bar"><span>SPD</span><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+        </div>
+        <div class="skills-preview">
+          <span class="skill-tag">기습</span>
+          <span class="skill-tag">독 단검</span>
+          <span class="skill-tag">은신</span>
+        </div>
+      </div>
+    </div>
+    <div class="name-input-container">
+      <label>영웅의 이름 <span class="name-lock-note">🔒 계정 아이디 고정 · 변경 불가</span></label>
+      <input type="text" id="heroName" placeholder="자동 설정됩니다" maxlength="12" readonly>
+    </div>
+    <button class="start-btn" id="startAdventureBtn">모험 시작 ⚔</button>
+  </div>
+</div>
+
+<!-- 메인 게임 화면 -->
+<div id="gameScreen" class="screen">
+  <!-- 상단 HUD -->
+  <div class="hud">
+    <div class="hud-left">
+      <div class="hero-portrait" id="heroPortrait"></div>
+      <div class="hero-info">
+        <div class="hero-name-level">
+          <span id="hudHeroName">영웅</span>
+          <span class="level-badge" id="hudLevel">Lv.1</span>
+        </div>
+        <div class="hud-bar hp-bar">
+          <span>HP</span>
+          <div class="bar-track">
+            <div class="bar-fill hp-fill" id="hudHpFill"></div>
+          </div>
+          <span id="hudHpText">100/100</span>
+        </div>
+        <div class="hud-bar mp-bar">
+          <span>MP</span>
+          <div class="bar-track">
+            <div class="bar-fill mp-fill" id="hudMpFill"></div>
+          </div>
+          <span id="hudMpText">50/50</span>
+        </div>
+        <div class="hud-bar exp-bar">
+          <span>XP</span>
+          <div class="bar-track">
+            <div class="bar-fill exp-fill" id="hudExpFill"></div>
+          </div>
+          <span id="hudExpText">0/100</span>
+        </div>
+      </div>
+    </div>
+    <div class="hud-center">
+      <div class="location-info" id="locationInfo">🗺 출발의 마을</div>
+      <div class="hud-gold">💰 <span id="hudGold">0</span> 골드</div>
+    </div>
+    <div class="hud-right">
+      <button class="hud-btn" id="openInventory">🎒 인벤토리</button>
+      <button class="hud-btn" id="openStats">📊 스탯</button>
+      <button class="hud-btn" id="saveBtn">💾 저장</button>
+      <div class="hud-user-info">
+        <span class="hud-username" id="hudUsername"></span>
+        <button class="hud-btn logout-btn" id="logoutBtn">🚪 로그아웃</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <div class="game-area">
+    <!-- 월드 맵 -->
+    <div id="worldMap" class="game-panel active">
+      <canvas id="mapCanvas"></canvas>
+      <div class="map-overlay">
+        <div class="map-locations" id="mapLocations"></div>
+      </div>
+    </div>
+
+    <!-- 마을 -->
+    <div id="townPanel" class="game-panel">
+      <div class="town-bg">
+        <div class="town-scene">
+          <div class="buildings">
+            <div class="building inn" id="innBuilding">
+              <div class="building-sign">🏠 여관</div>
+            </div>
+            <div class="building shop" id="shopBuilding">
+              <div class="building-sign">🛒 상점</div>
+            </div>
+            <div class="building blacksmith" id="smithBuilding">
+              <div class="building-sign">⚒ 대장간</div>
+            </div>
+            <div class="building guild" id="guildBuilding">
+              <div class="building-sign">📋 모험가 길드</div>
+            </div>
+          </div>
+        </div>
+        <button class="leave-btn" id="leaveBtn">🗺 세계 지도로</button>
+        <div class="npc-dialogue" id="npcDialogue"></div>
+      </div>
+    </div>
+
+    <!-- 던전 탐험 -->
+    <div id="dungeonPanel" class="game-panel">
+      <div class="dungeon-scene" id="dungeonScene">
+        <div class="dungeon-bg" id="dungeonBg"></div>
+        <div class="dungeon-path">
+          <div class="dungeon-progress" id="dungeonProgress">
+            <div class="progress-bar" id="dungeonProgressBar"></div>
+            <span id="dungeonProgressText">진행: 0%</span>
+          </div>
+          <div class="dungeon-events" id="dungeonEvents"></div>
+          <div class="dungeon-actions">
+            <button class="dungeon-btn" id="exploreBtn">⚔ 앞으로 전진</button>
+            <button class="dungeon-btn safe" id="retreatBtn">🏃 후퇴하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 전투 화면 -->
+    <div id="battlePanel" class="game-panel">
+      <div class="battle-scene">
+        <div class="battle-bg" id="battleBg"></div>
+        <div class="battle-area">
+          <!-- 적 영역 -->
+          <div class="enemy-area">
+            <div class="enemy-container">
+              <div class="enemy-name-hp">
+                <span id="enemyName">고블린</span>
+                <div class="enemy-hp-bar">
+                  <div class="enemy-hp-fill" id="enemyHpFill"></div>
+                </div>
+                <span id="enemyHpText">50/50</span>
+              </div>
+              <div class="enemy-sprite" id="enemySprite"></div>
+              <div class="enemy-status" id="enemyStatus"></div>
+            </div>
+          </div>
+          <!-- 영웅 영역 -->
+          <div class="hero-battle-area">
+            <div class="hero-battle-sprite" id="heroBattleSprite"></div>
+            <div class="hero-battle-info">
+              <div class="battle-hp-bar">
+                <span>HP</span>
+                <div class="b-bar-track"><div class="b-bar-fill hp" id="battleHpFill"></div></div>
+                <span id="battleHpText"></span>
+              </div>
+              <div class="battle-mp-bar">
+                <span>MP</span>
+                <div class="b-bar-track"><div class="b-bar-fill mp" id="battleMpFill"></div></div>
+                <span id="battleMpText"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 전투 로그 -->
+        <div class="battle-log" id="battleLog"></div>
+        <!-- 전투 액션 -->
+        <div class="battle-actions" id="battleActions">
+          <div class="action-category">
+            <h4>⚔ 공격</h4>
+            <div class="action-btns" id="attackBtns"></div>
+          </div>
+          <div class="action-category">
+            <h4>✨ 스킬</h4>
+            <div class="action-btns" id="skillBtns"></div>
+          </div>
+          <div class="action-category">
+            <h4>🎒 아이템</h4>
+            <div class="action-btns" id="itemBtns"></div>
+          </div>
+        </div>
+        <!-- 턴 표시 -->
+        <div class="turn-indicator" id="turnIndicator">당신의 차례</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 인벤토리 모달 -->
+  <div id="inventoryModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🎒 인벤토리</h3>
+        <button class="modal-close" id="closeInventory">✕</button>
+      </div>
+      <div class="inventory-tabs">
+        <button class="tab-btn active" data-tab="all">전체</button>
+        <button class="tab-btn" data-tab="weapon">무기</button>
+        <button class="tab-btn" data-tab="armor">방어구</button>
+        <button class="tab-btn" data-tab="consumable">소모품</button>
+      </div>
+      <div class="inventory-grid" id="inventoryGrid"></div>
+      <div class="item-detail" id="itemDetail">
+        <p class="empty-msg">아이템을 선택하세요</p>
+      </div>
+      <div class="equip-section">
+        <h4>장착 중인 장비</h4>
+        <div class="equipped-items" id="equippedItems"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 스탯 모달 -->
+  <div id="statsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📊 캐릭터 정보</h3>
+        <button class="modal-close" id="closeStats">✕</button>
+      </div>
+      <div class="stats-content" id="statsContent"></div>
+    </div>
+  </div>
+
+  <!-- 상점 모달 -->
+  <div id="shopModal" class="modal">
+    <div class="modal-content shop-modal">
+      <div class="modal-header">
+        <h3>🛒 상인 아루노의 상점</h3>
+        <button class="modal-close" id="closeShop">✕</button>
+      </div>
+      <div class="shop-gold">보유 골드: 💰 <span id="shopGold">0</span></div>
+      <div class="shop-tabs">
+        <button class="tab-btn active" data-stab="buy">구매</button>
+        <button class="tab-btn" data-stab="sell">판매</button>
+      </div>
+      <div class="shop-items" id="shopItems"></div>
+    </div>
+  </div>
+
+  <!-- 여관 모달 -->
+  <div id="innModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🏠 황금 여관</h3>
+        <button class="modal-close" id="closeInn">✕</button>
+      </div>
+      <div class="inn-content">
+        <div class="inn-keeper">🧑‍💼</div>
+        <p id="innMessage">안녕하세요, 여행자님! 하룻밤 쉬어 가시겠어요?<br>숙박비는 <strong>20 골드</strong>입니다.</p>
+        <div class="inn-options">
+          <button class="inn-btn" id="restBtn">💤 숙박하기 (20골드)</button>
+          <button class="inn-btn secondary" id="closeInnBtn">↩ 나가기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 레벨업 팝업 -->
+  <div id="levelUpPopup" class="popup">
+    <div class="popup-content level-up">
+      <div class="level-up-icon">⬆</div>
+      <h2>레벨 업!</h2>
+      <p id="levelUpText"></p>
+      <div class="stat-gains" id="statGains"></div>
+      <button class="popup-btn" id="levelUpClose">확인</button>
+    </div>
+  </div>
+
+  <!-- 전투 결과 팝업 -->
+  <div id="battleResultPopup" class="popup">
+    <div class="popup-content" id="battleResultContent">
+      <div class="result-icon" id="resultIcon"></div>
+      <h2 id="resultTitle"></h2>
+      <p id="resultMessage"></p>
+      <div class="rewards" id="battleRewards"></div>
+      <button class="popup-btn" id="battleResultClose">계속하기</button>
+    </div>
+  </div>
+
+  <!-- 대화 팝업 -->
+  <div id="dialoguePopup" class="popup">
+    <div class="popup-content dialogue">
+      <div class="npc-avatar" id="npcAvatar"></div>
+      <div class="npc-name" id="npcNameTag"></div>
+      <div class="dialogue-text" id="dialogueText"></div>
+      <button class="popup-btn" id="dialogueNext">다음 ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- 게임 오버 화면 -->
+<div id="gameOverScreen" class="screen">
+  <div class="game-over-content">
+    <div class="skull">💀</div>
+    <h1>패배...</h1>
+    <p id="gameOverMsg">당신의 영혼은 어둠 속으로 사라졌습니다.</p>
+    <button class="menu-btn" id="respawnBtn">↩ 여관으로 부활</button>
+    <button class="menu-btn secondary" id="goTitleBtn">🏠 타이틀로</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
